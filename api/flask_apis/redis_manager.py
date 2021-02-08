@@ -16,7 +16,7 @@ class RedisDBManager(object):
         self.db_connect = None
 
     def __enter__(self):
-        self.db_connect = StrictRedis(host='localhost', port=6379, db=0)
+        self.db_connect = StrictRedis(host=self._host, port=6379, db=0)
         return self.db_connect
 
     def __exit__(self, exc_type, exc_val, exc_tb):
