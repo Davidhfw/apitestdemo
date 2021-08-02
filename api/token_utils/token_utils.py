@@ -14,7 +14,7 @@ class TokenUtils(object):
     jwt token utils class
     """
     def __init__(self):
-        self._algo = 'H256'
+        self._algo = 'HS256'
         self._secret = 'api-test-demo'
         self._expire = 7200
         self._payload = None
@@ -74,10 +74,13 @@ class TokenUtils(object):
         else:
             self._expire = value
 
-    def generate_token(self):
+    def generate_token(self, payload):
         # 生成token
         try:
-            token = jwt.encode(self._payload, self._secret, algorithm=self._algo)
+            if not payload:
+                token = jwt.encode(self._payload, self._secret, algorithm=self._algo)
+            else:
+                token = jwt.encode(payload, self._secret, algorithm=self._algo)
         except Exception as e:
             raise e
         else:

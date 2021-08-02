@@ -1,0 +1,2223 @@
+{
+  "collection": {
+    "_": {
+      "postman_id": "4a953f13-0e76-4a24-89bd-c22f9abd91d7"
+    },
+    "item": [
+      {
+        "id": "187ac181-17f7-4596-9653-5a53adf9c219",
+        "name": "注册",
+        "request": {
+          "url": {
+            "path": [
+              "api",
+              "v1",
+              "register"
+            ],
+            "host": [
+              "{{host}}"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "method": "POST",
+          "body": {
+            "mode": "formdata",
+            "formdata": [
+              {
+                "key": "username",
+                "value": "user4",
+                "type": "text"
+              },
+              {
+                "key": "password",
+                "value": "pwd4",
+                "type": "text"
+              }
+            ]
+          }
+        },
+        "response": [],
+        "event": [
+          {
+            "listen": "test",
+            "script": {
+              "id": "58a6d4de-5a52-47f9-a613-2773e99a746a",
+              "type": "text/javascript",
+              "exec": [
+                "pm.test(\"Response time is less than 200ms\", function () {",
+                "    pm.expect(pm.response.responseTime).to.be.below(200);",
+                "});",
+                "pm.test(\"Status code is 200\", function () {",
+                "    pm.response.to.have.status(200);",
+                "});"
+              ],
+              "_lastExecutionId": "ea51bcfc-5f46-4fcb-bf30-ebe78e608ea3"
+            }
+          }
+        ]
+      },
+      {
+        "id": "c78e1441-4d06-4d03-9899-a1207687b21f",
+        "name": "登陆",
+        "request": {
+          "url": {
+            "port": "5000",
+            "path": [
+              "api",
+              "v1",
+              "login"
+            ],
+            "host": [
+              "localhost"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "method": "POST",
+          "body": {
+            "mode": "formdata",
+            "formdata": [
+              {
+                "key": "username",
+                "value": "user3",
+                "type": "text"
+              },
+              {
+                "key": "password",
+                "value": "pwd3",
+                "type": "text"
+              }
+            ]
+          }
+        },
+        "response": [],
+        "event": [
+          {
+            "listen": "test",
+            "script": {
+              "id": "3ef07e80-6e3c-4c4d-882e-bed763e3316a",
+              "type": "text/javascript",
+              "exec": [
+                "pm.test(\"Status code is 200\", function () {",
+                "    pm.response.to.have.status(200);",
+                "});",
+                "var body = pm.response.toJSON",
+                "var token = body[\"token\"]",
+                "pm.globals.set(\"token\", token);",
+                ""
+              ],
+              "_lastExecutionId": "7e1b06ad-caa4-4e87-b559-9439d946c0c6"
+            }
+          }
+        ]
+      },
+      {
+        "id": "d02fbe2e-f61a-472c-afce-2ca0ae1be8b2",
+        "name": "创建商品",
+        "request": {
+          "url": {
+            "port": "5000",
+            "path": [
+              "api",
+              "v1",
+              "create"
+            ],
+            "host": [
+              "localhost"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "token",
+              "value": "{{token}}"
+            }
+          ],
+          "method": "POST",
+          "body": {
+            "mode": "formdata",
+            "formdata": [
+              {
+                "key": "username",
+                "value": "user2",
+                "type": "text"
+              },
+              {
+                "key": "productName",
+                "value": "light",
+                "type": "text"
+              },
+              {
+                "key": "price",
+                "value": "50",
+                "type": "text"
+              },
+              {
+                "key": "vendor",
+                "value": "oppe",
+                "type": "text"
+              }
+            ]
+          }
+        },
+        "response": [],
+        "event": [
+          {
+            "listen": "test",
+            "script": {
+              "id": "56624675-e03a-4b03-94c0-7afe44d9155b",
+              "type": "text/javascript",
+              "exec": [
+                "pm.test(\"Status code is 200\", function () {",
+                "    pm.response.to.have.status(200);",
+                "});"
+              ],
+              "_lastExecutionId": "f1ad4456-6213-4fa2-8c75-7fca45eb747a"
+            }
+          }
+        ]
+      },
+      {
+        "id": "9a2bec61-5cc0-4e54-928c-433d7ddd7b6f",
+        "name": "查询商品",
+        "request": {
+          "url": {
+            "port": "5000",
+            "path": [
+              "api",
+              "v1",
+              "query"
+            ],
+            "host": [
+              "localhost"
+            ],
+            "query": [
+              {
+                "key": "username",
+                "value": "user2"
+              }
+            ],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "token",
+              "value": "{{token}}"
+            }
+          ],
+          "method": "GET",
+          "body": {
+            "mode": "formdata",
+            "formdata": []
+          }
+        },
+        "response": [],
+        "event": [
+          {
+            "listen": "test",
+            "script": {
+              "id": "25f31890-9570-49d4-8dee-cd9ded6468d3",
+              "type": "text/javascript",
+              "exec": [
+                "pm.test(\"Status code is 200\", function () {",
+                "    pm.response.to.have.status(200);",
+                "});"
+              ],
+              "_lastExecutionId": "f5e5d14d-5789-43fe-bf41-9964f1ed93d6"
+            }
+          }
+        ],
+        "protocolProfileBehavior": {
+          "disableBodyPruning": true
+        }
+      },
+      {
+        "id": "01c6bf2a-2e54-4708-9a87-10b27fb55c8a",
+        "name": "修改商品",
+        "request": {
+          "url": {
+            "port": "5000",
+            "path": [
+              "api",
+              "v1",
+              "update"
+            ],
+            "host": [
+              "localhost"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "token",
+              "value": "{{token}}"
+            }
+          ],
+          "method": "PUT",
+          "body": {
+            "mode": "formdata",
+            "formdata": [
+              {
+                "key": "username",
+                "value": "user2",
+                "type": "text"
+              },
+              {
+                "key": "productName",
+                "value": "computer",
+                "type": "text"
+              },
+              {
+                "key": "price",
+                "value": "100",
+                "type": "text"
+              },
+              {
+                "key": "vendor",
+                "value": "app",
+                "type": "text"
+              }
+            ]
+          }
+        },
+        "response": [],
+        "event": [
+          {
+            "listen": "test",
+            "script": {
+              "id": "5c603e8d-fee2-46e8-a307-f23fd2b3036b",
+              "type": "text/javascript",
+              "exec": [
+                "pm.test(\"Status code is 200\", function () {",
+                "    pm.response.to.have.status(200);",
+                "});"
+              ],
+              "_lastExecutionId": "7fe76f41-59a9-4c91-82f0-3fd940d1c879"
+            }
+          }
+        ]
+      },
+      {
+        "id": "68d85fc2-e953-4597-88f6-d9a21fb62628",
+        "name": "删除商品",
+        "request": {
+          "url": {
+            "port": "5000",
+            "path": [
+              "api",
+              "v1",
+              "delete"
+            ],
+            "host": [
+              "localhost"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "token",
+              "value": "{{token}}"
+            }
+          ],
+          "method": "DELETE",
+          "body": {
+            "mode": "formdata",
+            "formdata": [
+              {
+                "key": "username",
+                "value": "user2",
+                "type": "text"
+              },
+              {
+                "key": "productName",
+                "value": "computer",
+                "type": "text"
+              },
+              {
+                "key": "price",
+                "value": "100",
+                "type": "text"
+              },
+              {
+                "key": "vendor",
+                "value": "app",
+                "type": "text"
+              }
+            ]
+          }
+        },
+        "response": [],
+        "event": [
+          {
+            "listen": "test",
+            "script": {
+              "id": "2f2cf35a-39ed-4b84-b937-4f4af0fbbfa6",
+              "type": "text/javascript",
+              "exec": [
+                "pm.test(\"Status code is 200\", function () {",
+                "    pm.response.to.have.status(200);",
+                "});"
+              ],
+              "_lastExecutionId": "af68b957-13a5-4e08-8b19-36807bb61aa9"
+            }
+          }
+        ]
+      }
+    ],
+    "event": [],
+    "variable": [],
+    "info": {
+      "_postman_id": "4a953f13-0e76-4a24-89bd-c22f9abd91d7",
+      "name": "ApiTestSamples",
+      "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    }
+  },
+  "environment": {
+    "_": {
+      "postman_variable_scope": "environment",
+      "postman_exported_at": "2021-07-28T01:15:23.287Z",
+      "postman_exported_using": "Postman/8.9.0"
+    },
+    "id": "e2faf4b7-b378-4ce9-a08d-67efe810d969",
+    "name": "环境变量",
+    "values": [
+      {
+        "type": "any",
+        "value": "localhost:5000",
+        "key": "host"
+      }
+    ]
+  },
+  "globals": {
+    "id": "c25cacb1-0bd1-42d9-a01b-2548b3eef409",
+    "values": [
+      {
+        "type": "any",
+        "value": null,
+        "key": "token"
+      }
+    ]
+  },
+  "run": {
+    "stats": {
+      "iterations": {
+        "total": 1,
+        "pending": 0,
+        "failed": 0
+      },
+      "items": {
+        "total": 6,
+        "pending": 0,
+        "failed": 0
+      },
+      "scripts": {
+        "total": 6,
+        "pending": 0,
+        "failed": 0
+      },
+      "prerequests": {
+        "total": 6,
+        "pending": 0,
+        "failed": 0
+      },
+      "requests": {
+        "total": 6,
+        "pending": 0,
+        "failed": 0
+      },
+      "tests": {
+        "total": 6,
+        "pending": 0,
+        "failed": 0
+      },
+      "assertions": {
+        "total": 7,
+        "pending": 0,
+        "failed": 0
+      },
+      "testScripts": {
+        "total": 6,
+        "pending": 0,
+        "failed": 0
+      },
+      "prerequestScripts": {
+        "total": 0,
+        "pending": 0,
+        "failed": 0
+      }
+    },
+    "timings": {
+      "responseAverage": 16.666666666666668,
+      "responseMin": 6,
+      "responseMax": 57,
+      "responseSd": 18.098495947330967,
+      "dnsAverage": 0,
+      "dnsMin": 0,
+      "dnsMax": 0,
+      "dnsSd": 0,
+      "firstByteAverage": 0,
+      "firstByteMin": 0,
+      "firstByteMax": 0,
+      "firstByteSd": 0,
+      "started": 1627862365696,
+      "completed": 1627862365942
+    },
+    "executions": [
+      {
+        "cursor": {
+          "position": 0,
+          "iteration": 0,
+          "length": 6,
+          "cycles": 1,
+          "empty": false,
+          "eof": false,
+          "bof": true,
+          "cr": false,
+          "ref": "d0f1ff46-1232-48a7-8257-33467708503a",
+          "httpRequestId": "f6a691fd-a511-453f-9c5f-741b4cfc0429"
+        },
+        "item": {
+          "id": "187ac181-17f7-4596-9653-5a53adf9c219",
+          "name": "注册",
+          "request": {
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "register"
+              ],
+              "host": [
+                "{{host}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "POST",
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "username",
+                  "value": "user4",
+                  "type": "text"
+                },
+                {
+                  "key": "password",
+                  "value": "pwd4",
+                  "type": "text"
+                }
+              ]
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "58a6d4de-5a52-47f9-a613-2773e99a746a",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Response time is less than 200ms\", function () {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(200);",
+                  "});",
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ],
+                "_lastExecutionId": "ea51bcfc-5f46-4fcb-bf30-ebe78e608ea3"
+              }
+            }
+          ]
+        },
+        "request": {
+          "url": {
+            "protocol": "http",
+            "port": "5000",
+            "path": [
+              "api",
+              "v1",
+              "register"
+            ],
+            "host": [
+              "localhost"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "User-Agent",
+              "value": "PostmanRuntime/7.28.2",
+              "system": true
+            },
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "system": true
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache",
+              "system": true
+            },
+            {
+              "key": "Postman-Token",
+              "value": "40e9456c-9b5e-4bed-88f1-17b648ba5f55",
+              "system": true
+            },
+            {
+              "key": "Host",
+              "value": "localhost:5000",
+              "system": true
+            },
+            {
+              "key": "Accept-Encoding",
+              "value": "gzip, deflate, br",
+              "system": true
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive",
+              "system": true
+            },
+            {
+              "key": "Content-Length",
+              "value": "279",
+              "system": true
+            }
+          ],
+          "method": "POST",
+          "body": {
+            "mode": "formdata",
+            "formdata": [
+              {
+                "key": "username",
+                "value": "user4",
+                "type": "text"
+              },
+              {
+                "key": "password",
+                "value": "pwd4",
+                "type": "text"
+              }
+            ]
+          }
+        },
+        "response": {
+          "id": "1afb4d1c-1ad0-4c07-80aa-c46cdb826909",
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Content-Length",
+              "value": "108"
+            },
+            {
+              "key": "Server",
+              "value": "Werkzeug/2.0.1 Python/3.9.2"
+            },
+            {
+              "key": "Date",
+              "value": "Sun, 01 Aug 2021 23:59:25 GMT"
+            }
+          ],
+          "stream": {
+            "type": "Buffer",
+            "data": [
+              123,
+              10,
+              32,
+              32,
+              34,
+              99,
+              111,
+              100,
+              101,
+              34,
+              58,
+              32,
+              53,
+              48,
+              48,
+              44,
+              32,
+              10,
+              32,
+              32,
+              34,
+              109,
+              101,
+              115,
+              115,
+              97,
+              103,
+              101,
+              34,
+              58,
+              32,
+              34,
+              92,
+              117,
+              55,
+              53,
+              50,
+              56,
+              92,
+              117,
+              54,
+              50,
+              51,
+              55,
+              92,
+              117,
+              53,
+              100,
+              102,
+              50,
+              92,
+              117,
+              54,
+              99,
+              101,
+              56,
+              92,
+              117,
+              53,
+              49,
+              56,
+              99,
+              92,
+              117,
+              102,
+              102,
+              48,
+              99,
+              92,
+              117,
+              54,
+              53,
+              101,
+              48,
+              92,
+              117,
+              57,
+              55,
+              48,
+              48,
+              92,
+              117,
+              53,
+              49,
+              56,
+              100,
+              92,
+              117,
+              54,
+              98,
+              50,
+              49,
+              92,
+              117,
+              54,
+              99,
+              101,
+              56,
+              92,
+              117,
+              53,
+              49,
+              56,
+              99,
+              34,
+              10,
+              125,
+              10
+            ]
+          },
+          "cookie": [],
+          "responseTime": 57,
+          "responseSize": 108
+        },
+        "id": "187ac181-17f7-4596-9653-5a53adf9c219",
+        "assertions": [
+          {
+            "assertion": "Response time is less than 200ms",
+            "skipped": false
+          },
+          {
+            "assertion": "Status code is 200",
+            "skipped": false
+          }
+        ]
+      },
+      {
+        "cursor": {
+          "ref": "a18b6299-f856-4082-a7c6-1fcf6c18c24d",
+          "length": 6,
+          "cycles": 1,
+          "position": 1,
+          "iteration": 0,
+          "httpRequestId": "493e6685-f4ae-4a4c-98d5-080b49cfd865"
+        },
+        "item": {
+          "id": "c78e1441-4d06-4d03-9899-a1207687b21f",
+          "name": "登陆",
+          "request": {
+            "url": {
+              "port": "5000",
+              "path": [
+                "api",
+                "v1",
+                "login"
+              ],
+              "host": [
+                "localhost"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "POST",
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "username",
+                  "value": "user3",
+                  "type": "text"
+                },
+                {
+                  "key": "password",
+                  "value": "pwd3",
+                  "type": "text"
+                }
+              ]
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "3ef07e80-6e3c-4c4d-882e-bed763e3316a",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "var body = pm.response.toJSON",
+                  "var token = body[\"token\"]",
+                  "pm.globals.set(\"token\", token);",
+                  ""
+                ],
+                "_lastExecutionId": "7e1b06ad-caa4-4e87-b559-9439d946c0c6"
+              }
+            }
+          ]
+        },
+        "request": {
+          "url": {
+            "protocol": "http",
+            "port": "5000",
+            "path": [
+              "api",
+              "v1",
+              "login"
+            ],
+            "host": [
+              "localhost"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "User-Agent",
+              "value": "PostmanRuntime/7.28.2",
+              "system": true
+            },
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "system": true
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache",
+              "system": true
+            },
+            {
+              "key": "Postman-Token",
+              "value": "18d5c838-c53b-4544-87a3-f20f686b6b16",
+              "system": true
+            },
+            {
+              "key": "Host",
+              "value": "localhost:5000",
+              "system": true
+            },
+            {
+              "key": "Accept-Encoding",
+              "value": "gzip, deflate, br",
+              "system": true
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive",
+              "system": true
+            },
+            {
+              "key": "Content-Length",
+              "value": "279",
+              "system": true
+            }
+          ],
+          "method": "POST",
+          "body": {
+            "mode": "formdata",
+            "formdata": [
+              {
+                "key": "username",
+                "value": "user3",
+                "type": "text"
+              },
+              {
+                "key": "password",
+                "value": "pwd3",
+                "type": "text"
+              }
+            ]
+          }
+        },
+        "response": {
+          "id": "170217b7-4bee-404c-b40a-c86232a5d5ba",
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Content-Length",
+              "value": "102"
+            },
+            {
+              "key": "Server",
+              "value": "Werkzeug/2.0.1 Python/3.9.2"
+            },
+            {
+              "key": "Date",
+              "value": "Sun, 01 Aug 2021 23:59:25 GMT"
+            }
+          ],
+          "stream": {
+            "type": "Buffer",
+            "data": [
+              123,
+              10,
+              32,
+              32,
+              34,
+              99,
+              111,
+              100,
+              101,
+              34,
+              58,
+              32,
+              52,
+              48,
+              49,
+              44,
+              32,
+              10,
+              32,
+              32,
+              34,
+              109,
+              101,
+              115,
+              115,
+              97,
+              103,
+              101,
+              34,
+              58,
+              32,
+              34,
+              92,
+              117,
+              55,
+              53,
+              50,
+              56,
+              92,
+              117,
+              54,
+              50,
+              51,
+              55,
+              92,
+              117,
+              56,
+              102,
+              100,
+              56,
+              92,
+              117,
+              54,
+              55,
+              50,
+              97,
+              92,
+              117,
+              54,
+              99,
+              101,
+              56,
+              92,
+              117,
+              53,
+              49,
+              56,
+              99,
+              92,
+              117,
+              102,
+              102,
+              48,
+              99,
+              92,
+              117,
+              56,
+              98,
+              102,
+              55,
+              92,
+              117,
+              53,
+              49,
+              52,
+              56,
+              92,
+              117,
+              54,
+              99,
+              101,
+              56,
+              92,
+              117,
+              53,
+              49,
+              56,
+              99,
+              34,
+              10,
+              125,
+              10
+            ]
+          },
+          "cookie": [],
+          "responseTime": 9,
+          "responseSize": 102
+        },
+        "id": "c78e1441-4d06-4d03-9899-a1207687b21f",
+        "assertions": [
+          {
+            "assertion": "Status code is 200",
+            "skipped": false
+          }
+        ]
+      },
+      {
+        "cursor": {
+          "ref": "552e8c7a-0d82-44d2-8f21-56a147bbfc2c",
+          "length": 6,
+          "cycles": 1,
+          "position": 2,
+          "iteration": 0,
+          "httpRequestId": "0ed1c109-2bea-4f21-bb30-ce941a045e6b"
+        },
+        "item": {
+          "id": "d02fbe2e-f61a-472c-afce-2ca0ae1be8b2",
+          "name": "创建商品",
+          "request": {
+            "url": {
+              "port": "5000",
+              "path": [
+                "api",
+                "v1",
+                "create"
+              ],
+              "host": [
+                "localhost"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "token",
+                "value": "{{token}}"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "username",
+                  "value": "user2",
+                  "type": "text"
+                },
+                {
+                  "key": "productName",
+                  "value": "light",
+                  "type": "text"
+                },
+                {
+                  "key": "price",
+                  "value": "50",
+                  "type": "text"
+                },
+                {
+                  "key": "vendor",
+                  "value": "oppe",
+                  "type": "text"
+                }
+              ]
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "56624675-e03a-4b03-94c0-7afe44d9155b",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ],
+                "_lastExecutionId": "f1ad4456-6213-4fa2-8c75-7fca45eb747a"
+              }
+            }
+          ]
+        },
+        "request": {
+          "url": {
+            "protocol": "http",
+            "port": "5000",
+            "path": [
+              "api",
+              "v1",
+              "create"
+            ],
+            "host": [
+              "localhost"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "token",
+              "value": "null"
+            },
+            {
+              "key": "User-Agent",
+              "value": "PostmanRuntime/7.28.2",
+              "system": true
+            },
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "system": true
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache",
+              "system": true
+            },
+            {
+              "key": "Postman-Token",
+              "value": "11345fce-5821-4f3a-b0f8-ee2023d5447b",
+              "system": true
+            },
+            {
+              "key": "Host",
+              "value": "localhost:5000",
+              "system": true
+            },
+            {
+              "key": "Accept-Encoding",
+              "value": "gzip, deflate, br",
+              "system": true
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive",
+              "system": true
+            },
+            {
+              "key": "Content-Length",
+              "value": "498",
+              "system": true
+            }
+          ],
+          "method": "POST",
+          "body": {
+            "mode": "formdata",
+            "formdata": [
+              {
+                "key": "username",
+                "value": "user2",
+                "type": "text"
+              },
+              {
+                "key": "productName",
+                "value": "light",
+                "type": "text"
+              },
+              {
+                "key": "price",
+                "value": "50",
+                "type": "text"
+              },
+              {
+                "key": "vendor",
+                "value": "oppe",
+                "type": "text"
+              }
+            ]
+          }
+        },
+        "response": {
+          "id": "86a8e30e-dd4a-4054-995c-b0f9bf8f7135",
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Content-Length",
+              "value": "72"
+            },
+            {
+              "key": "Server",
+              "value": "Werkzeug/2.0.1 Python/3.9.2"
+            },
+            {
+              "key": "Date",
+              "value": "Sun, 01 Aug 2021 23:59:25 GMT"
+            }
+          ],
+          "stream": {
+            "type": "Buffer",
+            "data": [
+              123,
+              10,
+              32,
+              32,
+              34,
+              99,
+              111,
+              100,
+              101,
+              34,
+              58,
+              32,
+              50,
+              48,
+              48,
+              44,
+              32,
+              10,
+              32,
+              32,
+              34,
+              109,
+              101,
+              115,
+              115,
+              97,
+              103,
+              101,
+              34,
+              58,
+              32,
+              34,
+              92,
+              117,
+              52,
+              101,
+              97,
+              55,
+              92,
+              117,
+              53,
+              52,
+              99,
+              49,
+              92,
+              117,
+              54,
+              53,
+              98,
+              48,
+              92,
+              117,
+              53,
+              56,
+              57,
+              101,
+              92,
+              117,
+              54,
+              50,
+              49,
+              48,
+              92,
+              117,
+              53,
+              50,
+              57,
+              102,
+              34,
+              10,
+              125,
+              10
+            ]
+          },
+          "cookie": [],
+          "responseTime": 11,
+          "responseSize": 72
+        },
+        "id": "d02fbe2e-f61a-472c-afce-2ca0ae1be8b2",
+        "assertions": [
+          {
+            "assertion": "Status code is 200",
+            "skipped": false
+          }
+        ]
+      },
+      {
+        "cursor": {
+          "ref": "dae9be8f-0c77-4d00-8b4e-3ac7299e88c3",
+          "length": 6,
+          "cycles": 1,
+          "position": 3,
+          "iteration": 0,
+          "httpRequestId": "d4ab19a9-907a-485d-9b65-b44fa05e6c56"
+        },
+        "item": {
+          "id": "9a2bec61-5cc0-4e54-928c-433d7ddd7b6f",
+          "name": "查询商品",
+          "request": {
+            "url": {
+              "port": "5000",
+              "path": [
+                "api",
+                "v1",
+                "query"
+              ],
+              "host": [
+                "localhost"
+              ],
+              "query": [
+                {
+                  "key": "username",
+                  "value": "user2"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "token",
+                "value": "{{token}}"
+              }
+            ],
+            "method": "GET",
+            "body": {
+              "mode": "formdata",
+              "formdata": []
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "25f31890-9570-49d4-8dee-cd9ded6468d3",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ],
+                "_lastExecutionId": "f5e5d14d-5789-43fe-bf41-9964f1ed93d6"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        "request": {
+          "url": {
+            "protocol": "http",
+            "port": "5000",
+            "path": [
+              "api",
+              "v1",
+              "query"
+            ],
+            "host": [
+              "localhost"
+            ],
+            "query": [
+              {
+                "key": "username",
+                "value": "user2"
+              }
+            ],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "token",
+              "value": "null"
+            },
+            {
+              "key": "User-Agent",
+              "value": "PostmanRuntime/7.28.2",
+              "system": true
+            },
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "system": true
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache",
+              "system": true
+            },
+            {
+              "key": "Postman-Token",
+              "value": "c9a1b09b-f2bf-4882-8ad5-12ecf5e37984",
+              "system": true
+            },
+            {
+              "key": "Host",
+              "value": "localhost:5000",
+              "system": true
+            },
+            {
+              "key": "Accept-Encoding",
+              "value": "gzip, deflate, br",
+              "system": true
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive",
+              "system": true
+            }
+          ],
+          "method": "GET",
+          "body": {
+            "mode": "formdata",
+            "formdata": []
+          }
+        },
+        "response": {
+          "id": "389ae715-6892-41e0-8487-354786400d48",
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Content-Length",
+              "value": "194"
+            },
+            {
+              "key": "Server",
+              "value": "Werkzeug/2.0.1 Python/3.9.2"
+            },
+            {
+              "key": "Date",
+              "value": "Sun, 01 Aug 2021 23:59:25 GMT"
+            }
+          ],
+          "stream": {
+            "type": "Buffer",
+            "data": [
+              123,
+              10,
+              32,
+              32,
+              34,
+              99,
+              111,
+              100,
+              101,
+              34,
+              58,
+              32,
+              50,
+              48,
+              48,
+              44,
+              32,
+              10,
+              32,
+              32,
+              34,
+              100,
+              97,
+              116,
+              97,
+              34,
+              58,
+              32,
+              91,
+              10,
+              32,
+              32,
+              32,
+              32,
+              123,
+              10,
+              32,
+              32,
+              32,
+              32,
+              32,
+              32,
+              34,
+              112,
+              114,
+              105,
+              99,
+              101,
+              34,
+              58,
+              32,
+              34,
+              53,
+              48,
+              34,
+              44,
+              32,
+              10,
+              32,
+              32,
+              32,
+              32,
+              32,
+              32,
+              34,
+              112,
+              114,
+              111,
+              100,
+              117,
+              99,
+              116,
+              78,
+              97,
+              109,
+              101,
+              34,
+              58,
+              32,
+              34,
+              108,
+              105,
+              103,
+              104,
+              116,
+              34,
+              44,
+              32,
+              10,
+              32,
+              32,
+              32,
+              32,
+              32,
+              32,
+              34,
+              117,
+              115,
+              101,
+              114,
+              110,
+              97,
+              109,
+              101,
+              34,
+              58,
+              32,
+              34,
+              117,
+              115,
+              101,
+              114,
+              50,
+              34,
+              44,
+              32,
+              10,
+              32,
+              32,
+              32,
+              32,
+              32,
+              32,
+              34,
+              118,
+              101,
+              110,
+              100,
+              111,
+              114,
+              34,
+              58,
+              32,
+              34,
+              111,
+              112,
+              112,
+              101,
+              34,
+              10,
+              32,
+              32,
+              32,
+              32,
+              125,
+              10,
+              32,
+              32,
+              93,
+              44,
+              32,
+              10,
+              32,
+              32,
+              34,
+              109,
+              101,
+              115,
+              115,
+              97,
+              103,
+              101,
+              34,
+              58,
+              32,
+              34,
+              92,
+              117,
+              54,
+              55,
+              101,
+              53,
+              92,
+              117,
+              56,
+              98,
+              101,
+              50,
+              92,
+              117,
+              54,
+              50,
+              49,
+              48,
+              92,
+              117,
+              53,
+              50,
+              57,
+              102,
+              34,
+              10,
+              125,
+              10
+            ]
+          },
+          "cookie": [],
+          "responseTime": 6,
+          "responseSize": 194
+        },
+        "id": "9a2bec61-5cc0-4e54-928c-433d7ddd7b6f",
+        "assertions": [
+          {
+            "assertion": "Status code is 200",
+            "skipped": false
+          }
+        ]
+      },
+      {
+        "cursor": {
+          "ref": "3732da40-84f2-4573-ba00-4444229e485a",
+          "length": 6,
+          "cycles": 1,
+          "position": 4,
+          "iteration": 0,
+          "httpRequestId": "5663fc54-23c9-4ba2-ae8f-33651242a1d7"
+        },
+        "item": {
+          "id": "01c6bf2a-2e54-4708-9a87-10b27fb55c8a",
+          "name": "修改商品",
+          "request": {
+            "url": {
+              "port": "5000",
+              "path": [
+                "api",
+                "v1",
+                "update"
+              ],
+              "host": [
+                "localhost"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "token",
+                "value": "{{token}}"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "username",
+                  "value": "user2",
+                  "type": "text"
+                },
+                {
+                  "key": "productName",
+                  "value": "computer",
+                  "type": "text"
+                },
+                {
+                  "key": "price",
+                  "value": "100",
+                  "type": "text"
+                },
+                {
+                  "key": "vendor",
+                  "value": "app",
+                  "type": "text"
+                }
+              ]
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "5c603e8d-fee2-46e8-a307-f23fd2b3036b",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ],
+                "_lastExecutionId": "7fe76f41-59a9-4c91-82f0-3fd940d1c879"
+              }
+            }
+          ]
+        },
+        "request": {
+          "url": {
+            "protocol": "http",
+            "port": "5000",
+            "path": [
+              "api",
+              "v1",
+              "update"
+            ],
+            "host": [
+              "localhost"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "token",
+              "value": "null"
+            },
+            {
+              "key": "User-Agent",
+              "value": "PostmanRuntime/7.28.2",
+              "system": true
+            },
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "system": true
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache",
+              "system": true
+            },
+            {
+              "key": "Postman-Token",
+              "value": "8176181c-98af-446e-8d32-11123ac11ff6",
+              "system": true
+            },
+            {
+              "key": "Host",
+              "value": "localhost:5000",
+              "system": true
+            },
+            {
+              "key": "Accept-Encoding",
+              "value": "gzip, deflate, br",
+              "system": true
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive",
+              "system": true
+            },
+            {
+              "key": "Content-Length",
+              "value": "501",
+              "system": true
+            }
+          ],
+          "method": "PUT",
+          "body": {
+            "mode": "formdata",
+            "formdata": [
+              {
+                "key": "username",
+                "value": "user2",
+                "type": "text"
+              },
+              {
+                "key": "productName",
+                "value": "computer",
+                "type": "text"
+              },
+              {
+                "key": "price",
+                "value": "100",
+                "type": "text"
+              },
+              {
+                "key": "vendor",
+                "value": "app",
+                "type": "text"
+              }
+            ]
+          }
+        },
+        "response": {
+          "id": "64e487ae-2d28-4a9c-9c66-b57bbb2f8449",
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Content-Length",
+              "value": "72"
+            },
+            {
+              "key": "Server",
+              "value": "Werkzeug/2.0.1 Python/3.9.2"
+            },
+            {
+              "key": "Date",
+              "value": "Sun, 01 Aug 2021 23:59:25 GMT"
+            }
+          ],
+          "stream": {
+            "type": "Buffer",
+            "data": [
+              123,
+              10,
+              32,
+              32,
+              34,
+              99,
+              111,
+              100,
+              101,
+              34,
+              58,
+              32,
+              50,
+              48,
+              48,
+              44,
+              32,
+              10,
+              32,
+              32,
+              34,
+              109,
+              101,
+              115,
+              115,
+              97,
+              103,
+              101,
+              34,
+              58,
+              32,
+              34,
+              92,
+              117,
+              52,
+              101,
+              97,
+              55,
+              92,
+              117,
+              53,
+              52,
+              99,
+              49,
+              92,
+              117,
+              52,
+              102,
+              101,
+              101,
+              92,
+              117,
+              54,
+              53,
+              51,
+              57,
+              92,
+              117,
+              54,
+              50,
+              49,
+              48,
+              92,
+              117,
+              53,
+              50,
+              57,
+              102,
+              34,
+              10,
+              125,
+              10
+            ]
+          },
+          "cookie": [],
+          "responseTime": 8,
+          "responseSize": 72
+        },
+        "id": "01c6bf2a-2e54-4708-9a87-10b27fb55c8a",
+        "assertions": [
+          {
+            "assertion": "Status code is 200",
+            "skipped": false
+          }
+        ]
+      },
+      {
+        "cursor": {
+          "ref": "c688718a-c45d-480a-a06c-caee909e3d71",
+          "length": 6,
+          "cycles": 1,
+          "position": 5,
+          "iteration": 0,
+          "httpRequestId": "e0aeb449-2845-4495-ab60-bfc8742c11c5"
+        },
+        "item": {
+          "id": "68d85fc2-e953-4597-88f6-d9a21fb62628",
+          "name": "删除商品",
+          "request": {
+            "url": {
+              "port": "5000",
+              "path": [
+                "api",
+                "v1",
+                "delete"
+              ],
+              "host": [
+                "localhost"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "token",
+                "value": "{{token}}"
+              }
+            ],
+            "method": "DELETE",
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "username",
+                  "value": "user2",
+                  "type": "text"
+                },
+                {
+                  "key": "productName",
+                  "value": "computer",
+                  "type": "text"
+                },
+                {
+                  "key": "price",
+                  "value": "100",
+                  "type": "text"
+                },
+                {
+                  "key": "vendor",
+                  "value": "app",
+                  "type": "text"
+                }
+              ]
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "2f2cf35a-39ed-4b84-b937-4f4af0fbbfa6",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ],
+                "_lastExecutionId": "af68b957-13a5-4e08-8b19-36807bb61aa9"
+              }
+            }
+          ]
+        },
+        "request": {
+          "url": {
+            "protocol": "http",
+            "port": "5000",
+            "path": [
+              "api",
+              "v1",
+              "delete"
+            ],
+            "host": [
+              "localhost"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "token",
+              "value": "null"
+            },
+            {
+              "key": "User-Agent",
+              "value": "PostmanRuntime/7.28.2",
+              "system": true
+            },
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "system": true
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache",
+              "system": true
+            },
+            {
+              "key": "Postman-Token",
+              "value": "efabe500-5cda-4d03-a6a5-717b68499ffa",
+              "system": true
+            },
+            {
+              "key": "Host",
+              "value": "localhost:5000",
+              "system": true
+            },
+            {
+              "key": "Accept-Encoding",
+              "value": "gzip, deflate, br",
+              "system": true
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive",
+              "system": true
+            },
+            {
+              "key": "Content-Length",
+              "value": "501",
+              "system": true
+            }
+          ],
+          "method": "DELETE",
+          "body": {
+            "mode": "formdata",
+            "formdata": [
+              {
+                "key": "username",
+                "value": "user2",
+                "type": "text"
+              },
+              {
+                "key": "productName",
+                "value": "computer",
+                "type": "text"
+              },
+              {
+                "key": "price",
+                "value": "100",
+                "type": "text"
+              },
+              {
+                "key": "vendor",
+                "value": "app",
+                "type": "text"
+              }
+            ]
+          }
+        },
+        "response": {
+          "id": "f0d26e01-9155-4020-bf6e-a4cd24f1a2f8",
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Content-Length",
+              "value": "60"
+            },
+            {
+              "key": "Server",
+              "value": "Werkzeug/2.0.1 Python/3.9.2"
+            },
+            {
+              "key": "Date",
+              "value": "Sun, 01 Aug 2021 23:59:25 GMT"
+            }
+          ],
+          "stream": {
+            "type": "Buffer",
+            "data": [
+              123,
+              10,
+              32,
+              32,
+              34,
+              99,
+              111,
+              100,
+              101,
+              34,
+              58,
+              32,
+              50,
+              48,
+              48,
+              44,
+              32,
+              10,
+              32,
+              32,
+              34,
+              109,
+              101,
+              115,
+              115,
+              97,
+              103,
+              101,
+              34,
+              58,
+              32,
+              34,
+              92,
+              117,
+              53,
+              50,
+              50,
+              48,
+              92,
+              117,
+              57,
+              54,
+              54,
+              52,
+              92,
+              117,
+              54,
+              50,
+              49,
+              48,
+              92,
+              117,
+              53,
+              50,
+              57,
+              102,
+              34,
+              10,
+              125,
+              10
+            ]
+          },
+          "cookie": [],
+          "responseTime": 9,
+          "responseSize": 60
+        },
+        "id": "68d85fc2-e953-4597-88f6-d9a21fb62628",
+        "assertions": [
+          {
+            "assertion": "Status code is 200",
+            "skipped": false
+          }
+        ]
+      }
+    ],
+    "transfers": {
+      "responseTotal": 608
+    },
+    "failures": [],
+    "error": null
+  }
+}

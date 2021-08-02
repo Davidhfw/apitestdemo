@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="ApiTestSamples" tests="6" time="0.100">
+  <testsuite name="注册" id="187ac181-17f7-4596-9653-5a53adf9c219" timestamp="2021-08-01T23:59:25.696Z" tests="2" failures="0" errors="0" time="0.057">
+    <testcase name="Response time is less than 200ms" time="0.057" classname="ApiTestSamples"/>
+    <testcase name="Status code is 200" time="0.057" classname="ApiTestSamples"/>
+  </testsuite>
+  <testsuite name="登陆" id="c78e1441-4d06-4d03-9899-a1207687b21f" timestamp="2021-08-01T23:59:25.696Z" tests="1" failures="0" errors="0" time="0.009">
+    <testcase name="Status code is 200" time="0.009" classname="ApiTestSamples"/>
+  </testsuite>
+  <testsuite name="创建商品" id="d02fbe2e-f61a-472c-afce-2ca0ae1be8b2" timestamp="2021-08-01T23:59:25.696Z" tests="1" failures="0" errors="0" time="0.011">
+    <testcase name="Status code is 200" time="0.011" classname="ApiTestSamples"/>
+  </testsuite>
+  <testsuite name="查询商品" id="9a2bec61-5cc0-4e54-928c-433d7ddd7b6f" timestamp="2021-08-01T23:59:25.696Z" tests="1" failures="0" errors="0" time="0.006">
+    <testcase name="Status code is 200" time="0.006" classname="ApiTestSamples"/>
+  </testsuite>
+  <testsuite name="修改商品" id="01c6bf2a-2e54-4708-9a87-10b27fb55c8a" timestamp="2021-08-01T23:59:25.696Z" tests="1" failures="0" errors="0" time="0.008">
+    <testcase name="Status code is 200" time="0.008" classname="ApiTestSamples"/>
+  </testsuite>
+  <testsuite name="删除商品" id="68d85fc2-e953-4597-88f6-d9a21fb62628" timestamp="2021-08-01T23:59:25.696Z" tests="1" failures="0" errors="0" time="0.009">
+    <testcase name="Status code is 200" time="0.009" classname="ApiTestSamples"/>
+  </testsuite>
+</testsuites>
